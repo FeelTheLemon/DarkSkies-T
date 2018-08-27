@@ -139,6 +139,7 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  GPIO_PinState LED = GPIO_PIN_RESET;
   while (1)
   {
 
@@ -148,10 +149,11 @@ int main(void)
 	  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
 	  HAL_Delay(100);*/
 
-	  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
+	  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, LED);
+	  LED = !LED;
 	  Input_Read();
 	  Radio_Send();
-	  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);
+
 	  HAL_Delay(10);
 
 	  //LOG("p: %.2f, y: %.2f, r: %.2f, tick: %u\r\n", Angles.pitch, Angles.yaw, Angles.roll, HAL_GetTick());
@@ -241,9 +243,6 @@ static void MX_NVIC_Init(void)
   /* SPI2_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(SPI2_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(SPI2_IRQn);
-  /* DMA1_Channel1_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(DMA1_Channel1_IRQn, 0, 0);
-  HAL_NVIC_EnableIRQ(DMA1_Channel1_IRQn);
 }
 
 /* USER CODE BEGIN 4 */
