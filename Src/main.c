@@ -154,7 +154,7 @@ int main(void)
 	  Input_Read();
 	  Radio_Send();
 
-	  HAL_Delay(10);
+	  //HAL_Delay(10);
 
 	  //LOG("p: %.2f, y: %.2f, r: %.2f, tick: %u\r\n", Angles.pitch, Angles.yaw, Angles.roll, HAL_GetTick());
 

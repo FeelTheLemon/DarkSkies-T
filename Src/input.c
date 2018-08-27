@@ -14,6 +14,7 @@ struct Input Inputs;
 uint16_t ADC_Data[12];
 uint16_t ADC_FData[6];
 float F_CO = 0.5;
+uint8_t d_zone = 50;
 
 void Input_Init(void)
 {
@@ -22,10 +23,15 @@ void Input_Init(void)
 
 void Input_Read(void)
 {
-	F_CO = map((float)(4096 - ADC_Data[5]), 0.0, 4096.0, 0.5, 0.95);
+	F_CO = map((float)(4096 - ADC_Data[5]), 0.0, 4096.0, 0.7, 0.98);
 
-	for (int i = 0; i < 5; ++i) {
-		ADC_FData[i] = ADC_FData[i] * F_CO + ADC_Data[i] * (1 - F_CO);
+	for (int i = 0; i < 4; ++i) {
+		float lF_CO = 0.5;
+
+		if ((ADC_FData[i] < 2048 + d_zone && ADC_Data[i] < ADC_FData[i]) || (ADC_FData[i] > 2048 - d_zone && ADC_Data[i] > ADC_FData[i]))
+			lF_CO = F_CO;
+
+		ADC_FData[i] = ADC_FData[i] * lF_CO + ADC_Data[i] * (1.0 - lF_CO);
 	}
 
 	Inputs.lx = constrain((ADC_FData[1] - 2048) / 16, -128, 127);
