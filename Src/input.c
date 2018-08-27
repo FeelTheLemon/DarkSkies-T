@@ -41,6 +41,6 @@ void Input_Read(void)
 	Inputs.th = constrain((ADC_Data[4]) / 16, 0, 255);
 
 	//printf("lx: %i, ly: %i, rx: %i, ry: %i, th: %u\r\n", ADC_FData[1], ADC_FData[0], ADC_FData[3], ADC_FData[2], ADC_FData[4]);
-	printf("lx: %i, ly: %i, rx: %i, ry: %i, th: %u, F_CO: %.2f\r\n", Inputs.lx, Inputs.ly, Inputs.rx, Inputs.ry, Inputs.th, F_CO);
+	//printf("lx: %i, ly: %i, rx: %i, ry: %i, th: %u, F_CO: %.2f\r\n", Inputs.lx, Inputs.ly, Inputs.rx, Inputs.ry, Inputs.th, F_CO);
 }
 
