@@ -1,5 +1,12 @@
-./Debug/*
-./Release/*
+Debug/*
+Release/*
+
+*.mk
+*.list
+
+Debug/makefile
+Debug/objects.list
+Debug/output.map
 
 # Prerequisites
 *.d
