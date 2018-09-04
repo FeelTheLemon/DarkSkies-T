@@ -134,8 +134,12 @@ int main(void)
   Input_Init();
   Radio_Init();
 
+
+
   printf("Init ended!\r\n");
   /* USER CODE END 2 */
+
+
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
